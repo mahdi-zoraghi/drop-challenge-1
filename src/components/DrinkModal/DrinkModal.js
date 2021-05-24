@@ -1,34 +1,34 @@
-import { Modal, IconButton, Button } from "@material-ui/core";
-import Cookies from "js-cookie";
+import { Modal, IconButton, Button } from "@material-ui/core"
+import Cookies from "js-cookie"
 import {
   ShoppingCart as ShoppingCartIcon,
   FavoriteBorder as FavoriteBorderIcon,
   Favorite as FavoriteIcon,
-} from "@material-ui/icons";
+} from "@material-ui/icons"
 
-import { Paper, Title, Content, Image } from "./DrinkModal.styles";
+import { Paper, Title, Content, Image } from "./DrinkModal.styles"
 
 const DrinkModal = ({ open, onClose, drink }) => {
-  const favorite = Cookies.get("favorite") || "";
-  const favoriteArr = favorite.split(" ");
+  const favorite = Cookies.get("favorite") || ""
+  const favoriteArr = favorite.split(" ")
 
   const addDrinkToCart = () => {
-    const carts = Cookies.get("carts") || "";
+    const carts = Cookies.get("carts") || ""
     const newCarts = carts
       ? `${drink.id} ${carts}`.trim()
-      : `${drink.id}`.trim();
-    Cookies.set("carts", newCarts, { expires: 7 });
-  };
+      : `${drink.id}`.trim()
+    Cookies.set("carts", newCarts, { expires: 7 })
+  }
 
   const addDrinkToFavorite = () => {
-    const favorite = Cookies.get("favorite") || "";
+    const favorite = Cookies.get("favorite") || ""
     if (favorite.split(" ").indexOf(drink.id.toString()) === -1) {
       const newFavorite = favorite
         ? `${drink.id} ${favorite}`.trim()
-        : `${drink.id}`.trim();
-      Cookies.set("favorite", newFavorite, { expires: 30 });
+        : `${drink.id}`.trim()
+      Cookies.set("favorite", newFavorite, { expires: 30 })
     }
-  };
+  }
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -64,7 +64,7 @@ const DrinkModal = ({ open, onClose, drink }) => {
         </Content>
       </Paper>
     </Modal>
-  );
-};
+  )
+}
 
-export default DrinkModal;
+export default DrinkModal

@@ -1,47 +1,44 @@
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { useEffect, useState } from "react"
+import Cookies from "js-cookie"
 
-import { Drinks } from "../../components";
+import { Drinks } from "../../components"
 
-import { PriceBox } from "./Cart.styles";
+import { PriceBox } from "./Cart.styles"
 
-import { oneDrink } from "../../api";
+import { oneDrink } from "../../api"
 
 const Cart = () => {
-  const [carts, setCarts] = useState([]);
-  const cartsId = Cookies.get("carts") || "";
+  const [carts, setCarts] = useState([])
+  const cartsId = Cookies.get("carts") || ""
   // const cartsId = cartsIdCookie.split(",");
 
   const getPrice = () => {
     const price = carts.reduce((prev, current) => {
-      return prev + current.srm;
-    }, 0);
-    console.log(price);
-    return price;
-  };
+      return prev + current.srm
+    }, 0)
+    return price
+  }
 
   const closeHandler = drinkId => {
-    const cartsArr = cartsId.split(" ");
-    const index = cartsId.split(" ").indexOf(drinkId.toString());
-    cartsArr.splice(index, 1);
-    const newCarts = cartsArr.join(" ");
-    Cookies.set("carts", newCarts, { expires: 7 });
-    setCarts([]);
-  };
+    const cartsArr = cartsId.split(" ")
+    const index = cartsId.split(" ").indexOf(drinkId.toString())
+    cartsArr.splice(index, 1)
+    const newCarts = cartsArr.join(" ")
+    Cookies.set("carts", newCarts, { expires: 7 })
+    setCarts([])
+  }
 
   useEffect(() => {
     if (cartsId) {
-      const cookieCartList = cartsId.split(" ");
-      for (let i = 0; i <= cookieCartList.length - 1; i++) {
-        (async () => {
-          const cart = await oneDrink(cookieCartList[i]);
-          setCarts(prev => [...prev, cart.data[0]]);
-        })();
-      }
+      const cookieCartList = cartsId.split(" ")
+      cookieCartList.forEach(async cookieCart => {
+        const cart = await oneDrink(cookieCart)
+        setCarts(prev => [...prev, cart.data[0]])
+      })
     }
-  }, [cartsId]);
+  }, [cartsId])
 
-  if (!carts || !carts[0]) return <h1>Cart is Empty</h1>;
+  if (!carts || !carts[0]) return <h1>Cart is Empty</h1>
 
   return (
     <>
@@ -55,7 +52,7 @@ const Cart = () => {
         closeHandler={closeHandler}
       />
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

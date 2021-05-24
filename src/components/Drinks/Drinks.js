@@ -1,45 +1,44 @@
-import { useState } from "react";
-import { Button } from "@material-ui/core";
-import { v4 as uuIdv4 } from "uuid";
-import { ArrowUpward, ArrowDownward } from "@material-ui/icons";
+import { useState } from "react"
+import { Button } from "@material-ui/core"
+import { v4 as uuIdv4 } from "uuid"
+import { ArrowUpward, ArrowDownward } from "@material-ui/icons"
 
-import { Drink, DrinkModal } from "../";
+import { Drink, DrinkModal } from "../"
 
-import { Wrapper, ButtonsList } from "./Drinks.styles";
+import { Wrapper, ButtonsList } from "./Drinks.styles"
 
 const Drinks = ({ drinks, modal, ...props }) => {
-  const [drink, setDrink] = useState({});
-  const [drinksList] = useState(drinks);
-  const [activeSorted, setActiveSorted] = useState(0);
+  const [drink, setDrink] = useState({})
+  const [activeSorted, setActiveSorted] = useState(0)
 
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
-  const toggleModal = () => setOpenModal(prev => !prev);
+  const toggleModal = () => setOpenModal(prev => !prev)
 
   const openModalHandler = drink => {
-    setDrink(drink);
-    toggleModal();
-  };
+    setDrink(drink)
+    toggleModal()
+  }
 
   const sortByAbvDescending = () => {
-    drinksList.sort((a, b) => b.abv - a.abv);
-    setActiveSorted(1);
-  };
+    drinks.sort((a, b) => b.abv - a.abv)
+    setActiveSorted(1)
+  }
 
   const sortByAbvAscending = () => {
-    drinksList.sort((a, b) => a.abv - b.abv);
-    setActiveSorted(2);
-  };
+    drinks.sort((a, b) => a.abv - b.abv)
+    setActiveSorted(2)
+  }
 
   const sortByNameDescending = () => {
-    drinksList.sort((a, b) => a.name.localeCompare(b.name));
-    setActiveSorted(3);
-  };
+    drinks.sort((a, b) => a.name.localeCompare(b.name))
+    setActiveSorted(3)
+  }
 
   const sortByNameAscending = () => {
-    drinksList.sort((a, b) => b.name.localeCompare(a.name));
-    setActiveSorted(4);
-  };
+    drinks.sort((a, b) => b.name.localeCompare(a.name))
+    setActiveSorted(4)
+  }
 
   return (
     <>
@@ -74,7 +73,7 @@ const Drinks = ({ drinks, modal, ...props }) => {
         </Button>
       </ButtonsList>
       <Wrapper>
-        {drinksList?.map(drink => (
+        {drinks?.map(drink => (
           <Drink
             key={uuIdv4()}
             drink={drink}
@@ -87,11 +86,11 @@ const Drinks = ({ drinks, modal, ...props }) => {
         <DrinkModal open={openModal} onClose={toggleModal} drink={drink} />
       )}
     </>
-  );
-};
+  )
+}
 
 Drinks.defaultProps = {
   modal: true,
-};
+}
 
-export default Drinks;
+export default Drinks

@@ -1,7 +1,6 @@
 import { BrowserRouter } from "react-router-dom"
 import { QueryClientProvider, QueryClient } from "react-query"
 import { CssBaseline } from "@material-ui/core"
-import { CookiesProvider } from "react-cookie"
 
 import MainLayout from "./layouts/MainLayout"
 import Router from "./Router"
@@ -15,13 +14,11 @@ const App = () => {
       <CssBaseline />
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <CookiesProvider>
-          <BrowserRouter>
-            <MainLayout>
-              <Router />
-            </MainLayout>
-          </BrowserRouter>
-        </CookiesProvider>
+        <BrowserRouter>
+          <MainLayout>
+            <Router />
+          </MainLayout>
+        </BrowserRouter>
       </QueryClientProvider>
     </>
   )

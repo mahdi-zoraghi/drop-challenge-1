@@ -1,13 +1,13 @@
-import { IconButton } from "@material-ui/core";
-import { Close as CloseIcon } from "@material-ui/icons";
+import { IconButton } from "@material-ui/core"
+import { Close as CloseIcon } from "@material-ui/icons"
 
-import { Wrapper, Image } from "./Drink.styles";
+import { Wrapper, Image } from "./Drink.styles"
 
 const Drink = ({ drink, openModal, close, closeHandler }) => {
   const description =
     drink.description.length > 264
       ? `${drink.description.slice(1, 260)}...`
-      : drink.description;
+      : drink.description
 
   return (
     <Wrapper onClick={() => openModal(drink)}>
@@ -24,7 +24,7 @@ const Drink = ({ drink, openModal, close, closeHandler }) => {
         <p>{description}</p>
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Drink;
+export default Drink

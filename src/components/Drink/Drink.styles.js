@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Wrapper = styled.div`
   background-color: #ffffff;
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
       padding: 10px;
     }
   }
-`;
+`
 
 export const Image = styled.img`
   width: 50%;
@@ -47,4 +47,4 @@ export const Image = styled.img`
   object-fit: contain;
   background-position: center;
   background-size: cover;
-`;
+`
